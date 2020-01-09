@@ -1,0 +1,140 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <ba-card cardTitle="Family Details" baCardClasss="with-scroll">
+
+        <!-- input family details -->
+        <ba-card cardTitle="Family Details" baCardClass="with-scroll">
+            <!-- select Living Status -->
+            <div class="row">
+                <div class="col-sm-4" [ngClass]="{'has-error': (!livingStatus.valid && livingStatus.touched), 'has-success': (livingStatus.valid && livingStatus.touched)}">
+                    <div class="form-group">
+                        <label for="selectLivingStatus">
+                            <span *ngIf="!livingStatus.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>    
+                        Living Status</label>
+                        <select [formControl]="livingStatus" class="form-control" id="selectLivingStatus">
+                            <option value="" selected disabled>--select living status of father--</option>
+                            <option value="Alive">Alive</option>
+                            <option value="deceased">deceased</option>
+                        </select>
+                        <span *ngIf="!livingStatus.valid && livingStatus.touched" class="fa fa-info-circle help-block sub-little-text">Living Status is required</span>
+                    </div>
+                </div>
+            <!-- No Of Dependants-->
+                <div class="col-sm-4" [ngClass]="{'has-error': (!noOfDependants.valid && noOfDependants.touched), 'has-success': (noOfDependants.valid && noOfDependants.touched)}">
+                    <div class="form-group">
+                        <label for="inputNoOfDependants">
+                            <span *ngIf="!noOfDependants.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>
+                        No Of Dependants</label>
+                        <input [formControl]="noOfDependants" type="text" class="form-control" id="inputNoOfDependants" placeholder="No of Dependants">
+                        <span *ngIf="!noOfDependants.valid && noOfDependants.touched "  class="help-block  sub-little-text">No Of Dependants is required</span>
+                    </div>
+                </div>
+            <!-- Monthly Income -->
+                <div class="col-sm-4" [ngClass]="{'has-error': (!monthlyIncome.valid && monthlyIncome.touched), 'has-success': (monthlyIncome.valid && monthlyIncome.touched)}">
+                    <div class="form-group">
+                        <label for="inputMonthlyIncome">
+                            <span *ngIf="!monthlyIncome.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>
+                        Monthly Income</label>
+                        <input [formControl]="monthlyIncome" type="text" class="form-control" id="inputMonthlyIncome" placeholder="Monthly Income">
+                        <span *ngIf="!monthlyIncome.valid && monthlyIncome.touched" class="help-block sub-little-text">Income is required</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- input Guardian/Father Name -->
+                <div class="col-sm-6" [ngClass]="{'has-error': (!guardianFatherName.valid && guardianFatherName.touched), 'has-success': (guardianFatherName.valid && guardianFatherName.touched)}">
+                    <div class="form-group">
+                        <label for="inputGuardianFatherName">
+                            <span *ngIf="!guardianFatherName.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>
+                        Guardian/Father Name</label>
+                        <input [formControl]="guardianFatherName" type="text" class="form-control" id="inputGuardianFatherName" placeholder="Guardian/Spouse Name">
+                        <span *ngIf="guardianFatherName.hasError('required') && guardianFatherName.touched " class="help-block sub-little-text">You can't leave this empty.</span>
+                        <span *ngIf="guardianFatherName.hasError('minlength') && guardianFatherName.touched " class="help-block sub-little-text">Name must be greater then 3 characters.</span>                    
+                    </div>
+                </div>
+                <!-- input Guarding/Father Occupation -->
+                <div class="col-sm-6" [ngClass]="{'has-error': (!guardianFatherOccupation.valid && guardianFatherOccupation.touched), 'has-success': (guardianFatherOccupation.valid && guardianFatherOccupation.touched)}">
+                    <div class="form-group">
+                        <label for="inputGuardianFatherOccupation">
+                            <span *ngIf="!guardianFatherOccupation.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>
+                        Guardian/Father Occupation</label>
+                        <input [formControl]="guardianFatherOccupation" type="text" class="form-control" id="inputGuardianFatherOccupation" placeholder="Guardian/Father Occupation" >
+                        <span *ngIf="!guardianFatherOccupation.valid && guardianFatherOccupation.touched" class="help-block sub-little-text">Occupation is required</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- input Guarding Father Phone -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="inputGuardianFatherPhone">Guardian/Father Phone</label>
+                        <input [formControl]="guardianFatherPhone" type="tel" class="form-control" id="inputGuardianFatherPhone" placeholder="Guardian/Father phone" >
+                    </div>
+                </div>
+                <!-- input Guarding Father Mobile-->
+                <div class="col-sm-6" [ngClass]="{'has-error': (!guardianFatherMobile.valid &&guardianFatherMobile.touched), 'has-success': (guardianFatherMobile.valid && guardianFatherMobile.touched)}">
+                    <div class="form-group">
+                        <label for="inputGuardianFatherMobile">
+                            <span *ngIf="!guardianFatherMobile.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>
+                        Guardian/Father Mobile</label>
+                        <input [formControl]="guardianFatherMobile" type="text" class="form-control" id="inputGuardianFatherMobile" [textMask]="{mask: mobileMask}" placeholder="Guardian/Father mobile">
+                        <span *ngIf="(!guardianFatherMobile.valid && guardianFatherMobile.dirty)" class="help-block sub-little-text">Enter a valid format</span>
+                    </div>
+                </div>
+            </div>
+        </ba-card>
+
+        <!-- Details about Bank Account -->
+        <ba-card cardTitle="BankAccount Detail(if any)" baCardClass="with-scroll">
+            <div class="row">
+                <div class="col-lg-12">
+                    <br>  
+                    <h4>BankAccount Detail for credit of refundable security/fee,if any</h4>
+                </div>
+                <!-- input account title -->
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="inputAccountTitle">Acoount Title</label>
+                        <input [formControl]="accountTitle" type="text" class="form-control" id="inputAccountTitle" placeholder="Account Title">
+                    </div>
+                </div>
+                <!-- input account number -->
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="inputAccountNo">Account No</label>
+                        <input [formControl]="accountNo" type="text" class="form-control" id="inputAccountNo" placeholder="Account No">
+                    </div>
+                </div>
+                <!-- input bank name -->
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="inputBankName">Bank Name</label>
+                        <input [formControl]="bankName" type="text" class="form-control" id="inputBankName" placeholder="Bank Name">
+                    </div>
+                </div>
+                <!-- input bank branch -->
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="inputBankBranch"> Branch Name</label>
+                        <input [formControl]="bankBranch" type="text" class="form-control" id="inputBankBranch" placeholder="Bank Branch">
+                    </div>
+                </div>
+            </div>            
+        </ba-card>            
+        
+        <!-- submit button -->
+        <div *ngIf="created !== true" class="form-group row">
+            <div class="col-sm-12">
+              <button type="submit" [disabled]="!form.valid" class="btn btn-primary float-right">Save and Move Next</button>
+            </div>
+        </div>
+        <div *ngIf="created === true" class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <button [disabled]="!form.valid" type="button" class="btn btn-primary pull-right" (click)="onUpdateSubmit(form.value)">Update and Move Next</button>
+            </div>
+        </div>
+    </ba-card>
+        
+</form>
+            

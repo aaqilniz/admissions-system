@@ -1,0 +1,33 @@
+{
+  "name": "bankDetails",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "bankName": {
+      "type": "string"
+    },
+    "bankBranch": {
+      "type": "string"
+    },
+    "accountTitle": {
+      "type": "string"
+    },
+    "accountNumber": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
+}

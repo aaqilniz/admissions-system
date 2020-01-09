@@ -1,0 +1,11 @@
+@-webkit-keyframes autofill {
+    to {
+        color: #FFFFFF;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+  }

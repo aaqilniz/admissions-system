@@ -1,0 +1,44 @@
+{
+  "name": "degree",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "degName": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "departments": {
+      "type": "hasAndBelongsToMany",
+      "model": "department",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "__get__departments"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__create__departments"
+    }
+  ],
+  "methods": {}
+}

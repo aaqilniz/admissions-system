@@ -1,0 +1,48 @@
+{
+  "name": "familyDetails",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "fatherOrGaurdianName": {
+      "type": "string",
+      "required": true
+    },
+    "fatherOrGaurdianPhoneNumber": {
+      "type": "number"
+    },
+    "fatherLivingStatus": {
+      "type": "string",
+      "required": true
+    },
+    "fatherOrGaurdianOcupation": {
+      "type": "string",
+      "required": true
+    },
+    "monthlyIncome": {
+      "type": "number",
+      "required": true
+    },
+    "fatherOrGaurdianMobileNumber": {
+      "type": "string",
+      "required": true
+    },
+    "numberOfDependents": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
+}

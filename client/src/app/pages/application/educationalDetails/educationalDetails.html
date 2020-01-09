@@ -1,0 +1,453 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <ba-card cardTitle="Educational Details" baCardClass="with-scroll">
+        <!-- Here is the SSC O-Level Details Section -->
+        <ba-card cardTitle="SSC/O-Level Details" baCardClass="with-scroll">
+            <div class="row">
+                <!-- select degree for SSC/O-Level -->
+                <div class="col-sm-3">
+                    <div class="form-group" [ngClass]="{'has-error': (!sscDegree.valid && sscDegree.touched), 'has-success': (sscDegree.valid && sscDegree.touched)}">
+                        <label for="selectSscDegree">
+                            <span *ngIf="!sscDegree.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Degree</label>
+                        <select [formControl]="sscDegree" class="form-control" id="selectSscDegree">
+                            <option value="" selected disabled>--select degree--</option>
+                            <option *ngFor="let sscDeg of sscDegreesArray" value={{sscDeg}}>
+                                {{sscDeg}}
+                            </option>
+                        </select>
+                        <span *ngIf="!sscDegree.valid && sscDegree.touched" class="help-block sub-little-text">Degree is required</span>
+                    </div>
+                </div>
+                <!-- select board of SSC/O-Level -->
+                <div class="col-sm-3">
+                    <div class="form-group" [ngClass]="{'has-error': (!sscBoard.valid && sscBoard.touched), 'has-success': (sscBoard.valid && sscBoard.touched)}">
+                        <label for="selectSscBoard">
+                            <span *ngIf="!sscBoard.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Board</label>
+                        <select [formControl]="sscBoard" class="form-control" id="selectSscBoard">
+                            <option value="" selected disabled>--select Board--</option>
+                            <option *ngFor="let board of boards" value={{board.board}}>
+                                {{board.board}}
+                            </option>
+                        </select>
+                        <span *ngIf="!sscBoard.valid && sscBoard.touched" class="help-block sub-little-text">Board is required</span>
+                    </div>
+                </div>
+                <!-- select study group of SSC/O-Level -->
+                <div class="col-sm-3">
+                    <div class="form-group" [ngClass]="{'has-error': (!sscSubject.valid && sscSubject.touched), 'has-success': (sscSubject.valid && sscSubject.touched)}">
+                        <label for="selectSscSubject">
+                            <span *ngIf="!sscSubject.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Subjects</label>
+                        <select (change)="sscSubjectChange($event.target.value)" [formControl]="sscSubject" class="form-control" id="selectSscSubject">
+                            <option value="" selected disabled>--select subject--</option>
+                            <option *ngFor="let sscSubjects of sscSubjectsArray" value={{sscSubjects}}>
+                                {{sscSubjects}}
+                            </option>
+                        </select>
+                        <span *ngIf="!sscSubject.valid && sscSubject.touched" class="help-block sub-little-text">Subject is required</span>
+                    </div>
+                </div>
+                <!-- in case SSC/O-Level subject is other -->
+                <div class="col-sm-3" *ngIf="form.value.sscSubject === 'Other'">
+                    <div class="form-group" [ngClass]="{'has-error': (!otherSscSubject.valid && otherSscSubject.touched), 'has-success': (otherSscSubject.valid && otherSscSubject.touched)}">
+                        <label for="inputOtherSscSubject">
+                            <span *ngIf="!otherSscSubject.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Other Subject</label>
+                        <input [formControl]="otherSscSubject" type="text" class="form-control" id="inputOtherSscSubject" placeholder="enter subject manually">
+                        <span *ngIf="!otherSscSubject.valid && otherSscSubject.touched"  class="help-block sub-little-text">subject is required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- input total marks of SSC/O-Level -->
+                <div class="col-sm-3">
+                    <div class="form-group" [ngClass]="{'has-error': (!sscTotalMarks.valid && sscTotalMarks.touched), 'has-success': (sscTotalMarks.valid && sscTotalMarks.touched)}">
+                        <label for="inputSscTotalMarks">
+                            <span *ngIf="!sscTotalMarks.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Total Marks</label>
+                        <input [formControl]="sscTotalMarks" type="number" min="1" class="form-control" id="inputSscTotalMarks" placeholder="100">
+                        <span *ngIf="!sscTotalMarks.valid && sscTotalMarks.touched" class="help-block sub-little-text">Total marks are required</span>
+                    </div>
+                </div>
+                <!-- input obtained marks of SSC/O-Level -->
+                <div class="col-sm-3">
+                    <div class="form-group" [ngClass]="{'has-error': (!sscObtainedMarks.valid && sscObtainedMarks.touched), 'has-success': (sscObtainedMarks.valid && sscObtainedMarks.touched)}">
+                        <label for="inputSscObtainedMarks">
+                            <span *ngIf="!sscObtainedMarks.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Obtained Marks</label>
+                        <input [formControl]="sscObtainedMarks" type="number" min="1"  class="form-control" id="inputSscObtainedMarks" placeholder="100">
+                        <span *ngIf="!sscObtainedMarks.valid && sscObtainedMarks.touched" class="help-block sub-little-text">Obtained marks are required</span>
+                        <span *ngIf="(form.value.sscTotalMarks < form.value.sscObtainedMarks)" style="color:red" class="help-block sub-little-text">Obtained marks must be less than Total marks</span>
+                    </div>
+                </div>
+            </div>
+        </ba-card>
+        <!-- Here is the End of the SSC/O-Level Details Section -->
+
+        <!-- Here is the start of HSSC/A-Level Details Section -->
+        <ba-card cardTitle="HSSC/A-Level Details" baCardClass="with-scroll">
+                <!-- checkbox if result awaing of HSSC/A-Level -->
+            <div class="form-group">
+                <div class="checkbox">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input type="checkbox" [formControl]="hsscResultAwaiting" (change)="onChange($event.target.checked)">
+                        <span>Result Awaiting</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <!-- type of HSSC/A-Level -->
+                <div class="col-sm-3">
+                    <div class="form-group" [ngClass]="{'has-error': (!hsscDegree.valid && hsscDegree.touched), 'has-success': (hsscDegree.valid && hsscDegree.touched)}">
+                        <label for="selectHsscDegree">
+                            <span *ngIf="!hsscDegree.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Degree</label>
+                        <select [formControl]="hsscDegree" class="form-control" id="selectDegree">
+                            <option value="" selected disabled>--select Degree--</option>
+                            <option *ngFor="let hsscDeg of hsscDegreesArray" value={{hsscDeg}}>
+                                {{hsscDeg}}
+                            </option>
+                        </select>
+                        <span *ngIf="!hsscDegree.valid && hsscDegree.touched" class="help-block sub-little-text">Degree is required</span>
+                    </div>
+                </div>
+                <!-- select board of HSSC/A-Level -->
+                <div class="col-sm-3">
+                    <div class="form-group" [ngClass]="{'has-error': (!hsscBoard.valid && hsscBoard.touched), 'has-success': (hsscBoard.valid && hsscBoard.touched)}">
+                        <label for="selectHsscBoard">
+                            <span *ngIf="!hsscBoard.valid" class="fa fa-asterisk" style="color:red; font-size: 10px"></span>     
+                        Board</label>
+                        <select [formControl]="hsscBoard" class="form-control" id="selectHsscBoard">
+                            <option value="" selected disabled>--select Board--</option>
+                            <option *ngFor="let board of boards" value={{board.board}}>
+                                {{board.board}}
+                            </option>
+                        </select>
+                        <span *ngIf="!hsscBoard.valid && hsscBoard.touched" class="help-block sub-little-text">Board is required</span>
+                    </div>
+                </div>
+                <!-- select study group of HSSC/A-Level -->
+                <div class="col-sm-3">
+                    <div class="form-group" [ngClass]="{'has-error': (!hsscSubject.valid && hsscSubject.touched), 'has-success': (hsscSubject.valid && hsscSubject.touched)}">
+                        <label for="selectHsscSubject">
+                            <span *ngIf="!hsscSubject.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Subjects</label>
+                        <select (change)="hsscSubjectChange($event.target.value)" [formControl]="hsscSubject" class="form-control" id="selectHsscSubject">
+                            <option value="" selected disabled>--select subject--</option>
+                            <option *ngFor="let hsscSub of hsscSubjectArray" value={{hsscSub}}>
+                                {{hsscSub}}
+                            </option>
+                        </select>
+                        <span *ngIf="!hsscSubject.valid && hsscSubject.touched" class="help-block sub-little-text">Subject is required</span>
+                    </div>
+                </div>
+                <!-- if subject is other -->
+                <div class="col-sm-3" *ngIf="(form.value.hsscSubject === 'Other')">
+                    <div class="form-group" [ngClass]="{'has-error': (!otherHsscSubject.valid && otherHsscSubject.touched), 'has-success': (otherHsscSubject.valid && otherHsscSubject.touched)}">
+                        <label for="inputOtherHsscSubject">
+                            <span *ngIf="!otherHsscSubject.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Other Subject</label>
+                        <input [formControl]="otherHsscSubject" type="text" class="form-control" id="inputOtherHsscSubject" placeholder="enter subject manually">
+                        <span *ngIf="!otherHsscSubject.valid && otherHsscSubject.touched" class="help-block sub-little-text">subject is required</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" >
+                <!-- hssc part-ii roll number if Hssc result is awaiting-->
+                <div class="col-sm-3" *ngIf="(form.value.hsscResultAwaiting === true)">
+                    <div class="form-group" [ngClass]="{'has-error': (!hsscRollNumber.valid && hsscRollNumber.touched), 'has-success': (hsscRollNumber.valid && hsscRollNumber.touched)}">
+                        <label for="inputhsscRollNumber">
+                            <span *ngIf="!hsscRollNumber.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Part-II Roll No</label>
+                        <input [formControl]="hsscRollNumber" type="text"  class="form-control" id="inputhsscRollNumber" placeholder="roll number">
+                        <span *ngIf="!hsscRollNumber.valid && hsscRollNumber.touched" class="help-block sub-little-text">Roll No is required</span>
+                    </div>
+                </div>
+                <!-- input total marks of HSSC/A-Level/part-1 in result awaiting case -->
+                <div class="col-sm-3">
+                    <div class="form-group" [ngClass]="{'has-error': (!hsscTotalMarks.valid && hsscTotalMarks.touched), 'has-success': (hsscTotalMarks.valid && hsscTotalMarks.touched)}">
+                        <label  *ngIf="(form.value.hsscResultAwaiting === false || form.value.hsscResultAwaiting === '')" for="inputHsscTotalMarks">
+                            <span *ngIf="!hsscTotalMarks.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Total Marks</label>
+                        <label *ngIf="(form.value.hsscResultAwaiting === true)"  for="inputHsscTotalMarks">
+                            <span *ngIf="!hsscTotalMarks.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Part-1 Total Marks</label>
+                        <input [formControl]="hsscTotalMarks" type="number" min="1"  class="form-control" id="inputHsscTotalMarks" placeholder="100">
+                        <span *ngIf="!hsscTotalMarks.valid && hsscTotalMarks.touched" class="help-block sub-little-text">Total marks are required</span>
+                    </div>
+                </div>
+                <!-- input obtained marks of HSSC/A-Level/part-1 in result awaiting case -->
+                <div class="col-sm-3">
+                    <div class="form-group" [ngClass]="{'has-error': (!hsscObtainedMarks.valid && hsscObtainedMarks.touched), 'has-success': (hsscObtainedMarks.valid && hsscObtainedMarks.touched)}">
+                        <label *ngIf="(form.value.hsscResultAwaiting === false || form.value.hsscResultAwaiting === '')" for="inputHsscObtainedMarks">
+                            <span *ngIf="!hsscObtainedMarks.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Obtained Marks</label>
+                        <label *ngIf="(form.value.hsscResultAwaiting === true)"  for="inputHsscTotalMarks">
+                            <span *ngIf="!hsscObtainedMarks.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>     
+                        Part-1 Obtained Marks</label>
+                        <input [formControl]="hsscObtainedMarks" type="number" min="1"  class="form-control" id="inputHsscObtainedMarks" placeholder="100">
+                        <span *ngIf="!hsscObtainedMarks.valid && hsscObtainedMarks.touched" class="help-block sub-little-text">Obtained marks are required</span>
+                        <span *ngIf="(form.value.hsscTotalMarks < form.value.hsscObtainedMarks)" style="color:red" class="help-block sub-little-text">Obtained marks must be less than Total marks</span>
+                    </div>
+                </div>
+            </div>
+        </ba-card>
+        <!-- Here is the End of HSSC/ A Level Details Section -->
+
+        <!-- Here is start of the Undergraduate Details Section -->
+        <ba-card cardTitle="Undergraduate (14year) Optional" baCardClass="with-scroll">
+            <!-- check box if result awaiting -->
+            <div class="form-group">
+                <div class="checkbox">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input type="checkbox" [formControl]="undergraduateResultAwaiting" >
+                        <span>Result Awaiting</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- degree type of undergraduate -->
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="selectUndergraduateDegree">Degree</label>
+                        <select [formControl]="undergraduateDegree" class="form-control" id="selectUndergraduateDegree">
+                            <option value="" selected disabled>--select Degree--</option>
+                            <option *ngFor="let undergraduateDeg of undergraduateDegreeArray" value={{undergraduateDeg}}>
+                                {{undergraduateDeg}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <!-- select university undergraduation was done -->
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="selectUndergraduateUniversity">University</label>
+                        <select [formControl]="undergraduateUniversity" class="form-control" id="selectUndergraduateUniversity">
+                            <option value="" selected disabled>--select University/board--</option>
+                            <option *ngFor="let university of universities" value={{university.university}}>
+                                {{university.university}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <!-- subjects for undergraduation -->
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="inputUndergraduateSubjects">Subjects</label>
+                        <input [formControl]="undergraduateSubjects" type="text" class="form-control"  id="inputUndergraduateSubjects" placeholder="subjects">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- 14year(optional) part-ii roll number if 14year(optional) result is awaiting-->
+                <div class="col-sm-4" *ngIf="(form.value.undergraduateResultAwaiting === true)">
+                    <div class="form-group" >
+                        <label for="inputUndergraduateRollNumber">Part-II Roll No</label>
+                        <input [formControl]="undergraduateRollNumber" type="text"  class="form-control" id="inputUndergraduateRollNumber" placeholder="roll number">
+                    </div>
+                 </div>
+                <!-- input for total marks of Undergraduate -->
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label *ngIf="(form.value.undergraduateResultAwaiting === false || form.value.undergraduateResultAwaiting === '')"  for="inputUndergraduateTotalMarks">Total Marks</label>
+                        <label *ngIf="(form.value.undergraduateResultAwaiting === true)"  for="inputUndergraduateTotalMarks"> Part-1 Total Marks</label>
+                        <input [formControl]="undergraduateTotalMarks" type="number" min="1" class="form-control" id="inputUndergraduateTotalMarks" placeholder="100">
+                    </div>
+                </div>
+                <!-- input for obtained marks of Undergraduates -->
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label *ngIf="(form.value.undergraduateResultAwaiting === false || form.value.undergraduateResultAwaiting === '')" for="inputUndergraduateObtainedMarks">Obtained Marks</label>
+                        <label *ngIf="(form.value.undergraduateResultAwaiting === true)"  for="inputUndergraduateObtainedMarks"> Part-1 Obtained Marks</label>
+                        <input [formControl]="undergraduateObtainedMarks" type="number" min="1" class="form-control" id="inputUndergraduateObtainedMarks" placeholder="100">
+                        <span *ngIf="(form.value.undergraduateTotalMarks < form.value.undergraduateObtainedMarks)" style="color:red" class="help-block sub-little-text">Obtained marks must be less than Total marks</span>
+                    </div>
+                </div>
+            </div>
+        </ba-card>
+
+        <!-- 16 year education section starts here -->
+        <ba-card cardTitle="16 Year" baCardClass="with-scroll" *ngIf="(applyingDegree === 'Graduate' || applyingDegree === 'PHD')">
+            <!-- Degree of 16 Year -->
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group" [ngClass]="{'has-error': (!graduateDegree.valid && graduateDegree.touched), 'has-success': (graduateDegree.valid && graduateDegree.touched)}">
+                        <label for="inputGraduateDegree">
+                            <span *ngIf="!graduateDegree.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>    
+                        Degree</label>
+                        <input [formControl]="graduateDegree" class="form-control" type="text" id="inputGraduateDegree" placeholder="degree">
+                        <span *ngIf="!graduateDegree.valid && graduateDegree.touched" class="help-block sub-little-text">Degree is required</span>
+                    </div>
+                </div>
+                <!-- Year of Passing -->
+                <div class="col-sm-4">
+                    <div class="form-group" [ngClass]="{'has-error': (!graduateYear.valid && graduateYear.touched), 'has-success': (graduateYear.valid && graduateYear.touched)}">
+                        <label for="selectGraduateYear">
+                            <span *ngIf="!graduateYear.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>    
+                        Year Of Passing</label>
+                        <select [formControl]="graduateYear" class="form-control" id="selectGraduateYear">
+                            <option value="" selected disabled>---</option>
+                            <option *ngFor="let year of years" value={{year.year}}>
+                                {{year.year}}
+                            </option>
+                        </select>
+                        <span *ngIf="!graduateYear.valid && graduateYear.touched" class="help-block sub-little-text">Year is required</span>
+                    </div>
+                </div>
+                <!-- select university of graduation -->
+                <div class="col-sm-4">
+                    <div class="form-group" [ngClass]="{'has-error': (!graduateUniversity.valid && graduateUniversity.touched), 'has-success': (graduateUniversity.valid && graduateUniversity.touched)}">
+                        <label for="selectGraduateUniversity">
+                            <span *ngIf="!graduateUniversity.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>    
+                        University</label>
+                        <select [formControl]="graduateUniversity" class="form-control" id="selectGraduateUniversity">
+                            <option value="" selected disabled>--select University/board--</option>
+                            <option *ngFor="let university of universities" value={{university.university}}>
+                                {{university.university}}
+                            </option>
+                        </select>
+                        <span *ngIf="!graduateUniversity.valid && graduateUniversity.touched" class="help-block sub-little-text">University required</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- subjects for graduation -->
+                <div class="col-sm-4">
+                    <div class="form-group" [ngClass]="{'has-error': (!graduateSubjects.valid && graduateSubjects.touched), 'has-success': (graduateSubjects.valid && graduateSubjects.touched)}">
+                        <label for="inputGraduateSubjects">
+                            <span *ngIf="!graduateSubjects.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>   
+                        Subjects</label>
+                        <input [formControl]="graduateSubjects" type="text" class="form-control"  id="inputGraduateSubjects" placeholder="subjects">
+                        <span *ngIf="!graduateSubjects.valid && graduateSubjects.touched" class="help-block sub-little-text">Subjects are required</span>
+                    </div>
+                </div>
+                <!-- input for total marks/cgpa of graduate -->
+                <div class="col-sm-4" >
+                    <div class="form-group" [ngClass]="{'has-error': (!graduateTotalMarks.valid && graduateTotalMarks.touched), 'has-success': (graduateTotalMarks.valid && graduateTotalMarks.touched)}">
+                        <label for="inputGraduateTotalMarks">
+                            <span *ngIf="!graduateTotalMarks.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>    
+                        CGPA Max/Max Marks</label>
+                        <input [formControl]="graduateTotalMarks" type="number" min="1" class="form-control" id="inputGraduateTotalMarks">
+                        <span *ngIf="!graduateTotalMarks.valid && graduateTotalMarks.touched" class="help-block sub-little-text">Max cgpa/marks are required</span>
+                    </div>
+                </div>
+                <!-- input for obtained marks/cgpa of graduates -->
+                <div class="col-sm-4">
+                    <div class="form-group" [ngClass]="{'has-error': (!graduateObtainedMarks.valid && graduateObtainedMarks.touched), 'has-success': (graduateObtainedMarks.valid && graduateObtainedMarks.touched)}">
+                        <label for="inputGraduateObtainedMarks">
+                            <span *ngIf="!graduateObtainedMarks.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>    
+                        CGPA Obtained/ Marks Obtained</label>
+                        <input [formControl]="graduateObtainedMarks" type="number" class="form-control" id="inputGraduateObtainedMarks">
+                        <span *ngIf="!graduateObtainedMarks.valid && graduateObtainedMarks.touched" class="help-block sub-little-text">Obtained cgpa/marks are required</span>
+                        <span *ngIf="(form.value.graduateTotalMarks < form.value.graduateObtainedMarks)" style="color:red" class="help-block sub-little-text">Obtained CGPA/marks must be less than Max CGPA/marks</span>
+                    </div>
+                </div>
+            </div>
+        </ba-card>
+        <!-- MS/MPhil section starts here -->
+        <ba-card cardTitle="MS / MPhil" baCardClass="with-scroll" *ngIf="(applyingDegree === 'PHD')">
+                <!-- Degree of MS/Mphil Year -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group" [ngClass]="{'has-error': (!msMphilDegree.valid && msMphilDegree.touched), 'has-success': (msMphilDegree.valid && msMphilDegree.touched)}">
+                            <label for="inputMsMphilDegree">
+                                <span *ngIf="!msMphilDegree.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>    
+                            Degree</label>
+                            <input [formControl]="msMphilDegree" class="form-control" type="text" id="inputMsMphilDegree" placeholder="degree">
+                            <span *ngIf="!msMphilDegree.valid && msMphilDegree.touched" class="help-block sub-little-text">Degree is required</span>
+                        </div>
+                    </div>
+                    <!-- Year of Passing -->
+                    <div class="col-sm-4">
+                        <div class="form-group" [ngClass]="{'has-error': (!msMphilYear.valid && msMphilYear.touched), 'has-success': (msMphilYear.valid && msMphilYear.touched)}">
+                            <label for="selectMsMphilYear">
+                                <span *ngIf="!msMphilYear.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>    
+                            Year Of Passing</label>
+                            <select [formControl]="msMphilYear" class="form-control" id="selectMsMphilYear">
+                                <option value="" selected disabled>---</option>
+                                <option *ngFor="let year of years" value={{year.year}}>
+                                    {{year.year}}
+                                </option>
+                            </select>
+                            <span *ngIf="!msMphilYear.valid && msMphilYear.touched" class="help-block sub-little-text">Year is required</span>
+                        </div>
+                    </div>
+                    <!-- select university of MS/Mphil -->
+                    <div class="col-sm-4">
+                        <div class="form-group" [ngClass]="{'has-error': (!msMphilUniversity.valid && msMphilUniversity.touched), 'has-success': (msMphilUniversity.valid && msMphilUniversity.touched)}">
+                            <label for="selectMsMphilUniversity">
+                                <span *ngIf="!msMphilUniversity.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>    
+                            University</label>
+                            <select [formControl]="msMphilUniversity" class="form-control" id="selectMsMphilUniversity">
+                                <option value="" selected disabled>--select University/board--</option>
+                                <option *ngFor="let university of universities" value={{university.university}}>
+                                    {{university.university}}
+                                </option>
+                            </select>
+                            <span *ngIf="!msMphilUniversity.valid && msMphilUniversity.touched" class="help-block sub-little-text">University required</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <!-- subjects for MS/Mphil -->
+                    <div class="col-sm-4">
+                        <div class="form-group" [ngClass]="{'has-error': (!msMphilSubjects.valid && msMphilSubjects.touched), 'has-success': (msMphilSubjects.valid && msMphilSubjects.touched)}">
+                            <label for="inputMsMphilSubjects">
+                                <span *ngIf="!msMphilSubjects.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>   
+                            Subjects</label>
+                            <input [formControl]="msMphilSubjects" type="text" class="form-control"  id="inputMsMphilSubjects" placeholder="subjects">
+                            <span *ngIf="!msMphilSubjects.valid && msMphilSubjects.touched" class="help-block sub-little-text">Subjects are required</span>
+                        </div>
+                    </div>
+                    <!-- input for total marks/cgpa of MS/Mphil -->
+                    <div class="col-sm-4" >
+                        <div class="form-group" [ngClass]="{'has-error': (!msMphilTotalMarks.valid && msMphilTotalMarks.touched), 'has-success': (msMphilTotalMarks.valid && msMphilTotalMarks.touched)}">
+                            <label for="inputMsMphilTotalMarks">
+                                <span *ngIf="!msMphilTotalMarks.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>    
+                            CGPA Max/Max Marks</label>
+                            <input [formControl]="msMphilTotalMarks" type="number" min="1" class="form-control" id="inputMsMphilTotalMarks">
+                            <span *ngIf="!msMphilTotalMarks.valid && msMphilTotalMarks.touched" class="help-block sub-little-text">Max cgpa/marks are required</span>
+                        </div>
+                    </div>
+                    <!-- input for obtained marks/cgpa of MS/Mphil -->
+                    <div class="col-sm-4">
+                        <div class="form-group" [ngClass]="{'has-error': (!msMphilObtainedMarks.valid && msMphilObtainedMarks.touched), 'has-success': (msMphilObtainedMarks.valid && msMphilObtainedMarks.touched)}">
+                            <label for="inputMsMphilObtainedMarks">
+                                <span *ngIf="!msMphilObtainedMarks.valid" class="fa fa-asterisk" style="color:red; font-size: 10px;"></span>    
+                            CGPA Obtained/ Marks Obtained</label>
+                            <input [formControl]="msMphilObtainedMarks" type="number" class="form-control" id="inputMsMphilObtainedMarks">
+                            <span *ngIf="!msMphilObtainedMarks.valid && msMphilObtainedMarks.touched" class="help-block sub-little-text">Obtained cgpa/marks are required</span>
+                            <span *ngIf="(form.value.msMphilTotalMarks < form.value.msMphilObtainedMarks)" style="color:red" class="help-block sub-little-text">Obtained CGPA/marks must be less than Max CGPA/marks</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- checkbox for issurance of thesis completed -->
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label for="checkMsMphilThesis" class="checkbox-inline custom-checkbox nowrap">
+                            <input type="checkbox" [formControl]="msMphilThesis" id="checkMsMphilThesis">
+                            <span><strong>I have completed minimum six Credit Hours Thesis.</strong></span>
+                        </label>
+                    </div>
+                </div>
+            </ba-card>
+
+        <!-- Save button -->
+        <div *ngIf="created !== true" class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <button [disabled]="!form.valid" type="submit"  class="btn btn-primary pull-right">Save and Move Next</button>
+            </div>
+        </div>
+        <div *ngIf="created === true" class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <button [disabled]="!form.valid" type="button" class="btn btn-primary pull-right" (click)="onUpdateSubmit(form.value)">Update and Move Next</button>
+            </div>
+          </div>
+    </ba-card>
+</form>
+        

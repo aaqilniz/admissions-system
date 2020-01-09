@@ -1,0 +1,65 @@
+@media screen and (min-width: 1620px) {
+  .row.shift-up {
+    > * {
+      margin-top: -573px;
+    }
+  }
+}
+
+@media screen and (max-width: 1620px) {
+  .card.feed-panel.large-card {
+    height: 824px;
+  }
+}
+
+.user-stats-card {
+  .card-title {
+    padding: 0 0 15px;
+  }
+}
+
+.blurCalendar {
+  height: 475px;
+}
+
+.btn-control {
+  height: 120px;
+  background-color: transparent;
+  color: white;
+  width: 150px;
+  border: 1px white solid;
+ 
+  
+}
+
+.pad {
+  padding: 10px;
+}
+ 
+.size {
+  font-size: 50px;
+  
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.btn-small {
+  height: 25px;
+}
+.btn-default {
+  transform: none;
+}
+
+.align-verticle-center {
+  vertical-align: middle;
+}

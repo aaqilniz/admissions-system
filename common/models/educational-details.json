@@ -1,0 +1,58 @@
+{
+  "name": "educationalDetails",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "degreeName": {
+      "type": "string",
+      "required": true
+    },
+    "degreeLevel": {
+      "type": "string",
+      "required": true
+    },
+    "degreeInstitute": {
+      "type": "string",
+      "required": true
+    },
+    "degreeSubject": {
+      "type": "string",
+      "required": true
+    },
+    "totalMarks": {
+      "type": "number"
+    },
+    "obtainedMarks": {
+      "type": "number"
+    },
+    "totalGPA": {
+      "type": "number"
+    },
+    "obtainedGPA": {
+      "type": "number"
+    },
+    "passingYear": {
+      "type": "string"
+    },
+    "rollNumber": {
+      "type": "string"
+    },
+    "thesisCheck": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
+}

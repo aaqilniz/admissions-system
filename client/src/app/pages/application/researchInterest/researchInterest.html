@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <ba-card cardTitle="Research Interests" baCardClass="with-scroll">
+        <!-- input Research Interest 1 -->
+        <div class="form-group row">
+            <label for="inputResearchInterest1" class="col-sm-2 control-label">Research Interest 1:</label>
+        
+            <div class="col-sm-6">
+                <input [formControl]="researchInterest1" type="text" class="form-control" id="inputResearchInterest1">
+            </div>
+        </div>
+        <!-- input Research Interest 2 -->
+        <div class="form-group row">
+            <label for="inputResearchInterest2" class="col-sm-2 control-label">Research Interest 2:</label>
+            
+            <div class="col-sm-6">
+                <input [formControl]="researchInterest2" type="text" class="form-control" id="inputResearchInterest2">
+            </div>
+        </div>
+        <!-- input Research Interest 3 -->
+        <div class="form-group row">
+            <label for="inputResearchInterest3" class="col-sm-2 control-label">Research Interest 3:</label>
+            
+            <div class="col-sm-6">
+                <input [formControl]="researchInterest3" type="text" class="form-control" id="inputResearchInterest3">
+            </div>
+        </div>
+        <!-- Submit Button -->
+        <div *ngIf="created !== true" class="form-group row">
+            <div class="offset-sm-2 col-sm-6">
+                <button type="submit" class="btn btn-primary pull-right">Save</button>                    
+                <button (click)="onSkipClick()"  type="button"  class="btn btn-default pull-right">Skip this step</button>
+            </div>
+        </div>
+        <div *ngIf="created === true" class="form-group row">
+        <div class="offset-sm-2 col-sm-6">
+          <button type="button" class="btn btn-primary pull-right" (click)="onUpdateSubmit(form.value)">Update and Move Next</button>
+        </div>
+      </div>
+    </ba-card>
+</form>

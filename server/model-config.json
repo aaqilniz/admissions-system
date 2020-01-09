@@ -1,0 +1,98 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "Student": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "studentAddress": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "educationalDetails": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "extraCurricularActivities": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "familyDetails": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "bankDetails": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "studentAptitudeTests": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "hobbies": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "language": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "fundDetails": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "researchInterests": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "mysql",
+    "public": false,
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "Student",
+        "foreignKey": "userId"
+      }
+    }
+  },
+  "ACL": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "Email": {
+    "dataSource": "emailsource"
+  },
+  "department": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "degree": {
+    "dataSource": "mysql",
+    "public": false
+  },
+  "images": {
+    "dataSource": "storage",
+    "public": true
+  }
+}

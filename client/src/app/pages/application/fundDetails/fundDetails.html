@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" >
+    <ba-card cardTitle="Fund Details" baCardClass="with-scroll">
+        <!-- input fund source -->
+        <div class="form-group row" >
+            <label for="inputSource" class="col-sm-2 control-label">Source </label>
+
+            <div class="col-sm-6">
+                <input [formControl]="source" type="text" class="form-control" id="inputSource">
+            </div>
+        </div>
+
+        <!-- input amount of fund -->
+        <div class="form-group row">
+            <label for="inputAmount" class="col-sm-2 control-label">Amount</label>
+
+            <div class="col-sm-6">
+                <input [formControl]="amount" type="text" class="form-control" id="inputAmount">
+            </div>
+        </div>
+
+        <!-- input duration of fund -->
+        <div class="form-group row">
+            <label for="inputDuration" class="col-sm-2 control-label">Duration(Months)</label>
+    
+            <div class="col-sm-6">
+                <input [formControl]="duration" type="text" class="form-control" id="inputDuration">
+            </div>
+        </div>  
+        
+        <div *ngIf="created !== true" class="form-group row">
+            <div class="offset-sm-2 col-sm-6">
+                <button [disabled]="!form.valid" type="submit" class="btn btn-primary pull-right">Save</button>                
+                <button (click)="onSkipClick()"  type="button" class="btn btn-default pull-right">Skip this step</button>
+            </div>
+        </div>
+        <div *ngIf="created === true" class="form-group row">
+            <div class="offset-sm-2 col-sm-6">
+              <button [disabled]="!form.valid" type="button" class="btn btn-primary pull-right" (click)="onUpdateSubmit(form.value)">Update and Move Next</button>
+            </div>
+          </div>
+    </ba-card>
+</form>

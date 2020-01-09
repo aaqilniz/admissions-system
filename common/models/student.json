@@ -1,0 +1,448 @@
+{
+	"name": "Student",
+	"base": "User",
+	"idInjection": true,
+	"options": {
+		"validateUpsert": true,
+		"emailVerificationRequired": true
+	},
+	"verifyOptions": {
+		"type": "email",
+		"from": "noreply@example.com",
+		"subject": "Verification Email Options",
+		"template": "E:\\NodeAngular-ProjectsPractice\\FYP\\my theme\\Fyp-project\\rough theme-lb3\\admission\\server\\views\\verify.ejs",
+		"redirect": "http://localhost:4200"
+	},
+	"excludeBaseProperties": [
+		"username",
+		"realm"
+	],
+	"properties": {
+		"name": {
+			"type": "string",
+			"required": true
+		},
+		"cnic": {
+			"type": "string"
+		},
+		"fatherName": {
+			"type": "string"
+		},
+		"nationality": {
+			"type": "string",
+			"required": true
+		},
+		"ApplyFor": {
+			"type": "string",
+			"required": true
+		},
+		"district": {
+			"type": "string"
+		},
+		"domicile": {
+			"type": "string"
+		},
+		"passport": {
+			"type": "string"
+		},
+		"studentMobileNumber": {
+			"type": "string"
+		},
+		"Gender": {
+			"type": "string"
+		},
+		"DoB": {
+			"type": "string"
+		},
+		"department": {
+			"type": "string"
+		},
+		"imageName": {
+			"type": "string"
+		}
+	},
+	"validations": [],
+	"relations": {
+		"studentAddresses": {
+			"type": "hasMany",
+			"model": "studentAddress",
+			"foreignKey": ""
+		},
+		"extraCurricularActivities": {
+			"type": "hasMany",
+			"model": "extraCurricularActivities",
+			"foreignKey": ""
+		},
+		"educationalDetails": {
+			"type": "hasMany",
+			"model": "educationalDetails",
+			"foreignKey": ""
+		},
+		"familyDetails": {
+			"type": "hasOne",
+			"model": "familyDetails",
+			"foreignKey": ""
+		},
+		"bankDetails": {
+			"type": "hasOne",
+			"model": "bankDetails",
+			"foreignKey": ""
+		},
+		"studentAptitudeTests": {
+			"type": "hasMany",
+			"model": "studentAptitudeTests",
+			"foreignKey": ""
+		},
+		"hobbies": {
+			"type": "hasMany",
+			"model": "hobbies",
+			"foreignKey": ""
+		},
+		"languages": {
+			"type": "hasMany",
+			"model": "language",
+			"foreignKey": ""
+		},
+		"fundDetails": {
+			"type": "hasOne",
+			"model": "fundDetails",
+			"foreignKey": ""
+		},
+		"researchInterests": {
+			"type": "hasMany",
+			"model": "researchInterests",
+			"foreignKey": ""
+		}
+	},
+	"acls": [
+		{
+			"accessType": "READ",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "exists"
+		},
+		{
+			"accessType": "WRITE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "DENY",
+			"property": "replaceById"
+		},
+		{
+			"accessType": "WRITE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "DENY",
+			"property": "deleteById"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$everyone",
+			"permission": "ALLOW",
+			"property": "getEmail"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__create__educationalDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__get__educationalDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__delete__educationalDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__update__educationalDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__updateById__educationalDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__create__extraCurricularActivities"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__get__extraCurricularActivities"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__delete__extraCurricularActivities"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__update__extraCurricularActivities"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__create__hobbies"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__get__hobbies"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__delete__hobbies"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__update__hobbies"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__create__languages"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__get__languages"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__delete__languages"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__update__languages"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__create__researchInterests"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__get__researchInterests"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__delete__researchInterests"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__update__researchInterests"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__updateById__researchInterests"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__create__studentAddresses"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__get__studentAddresses"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__delete__studentAddresses"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__update__studentAddresses"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__updateById__studentAddresses"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__create__studentAptitudeTests"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__get__studentAptitudeTests"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__delete__studentAptitudeTests"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__update__studentAptitudeTests"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__create__bankDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"property": "__get__bankDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__destroy__bankDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__update__bankDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__create__fundDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__get__fundDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__destroy__fundDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__update__fundDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__create__familyDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__get__familyDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__destroy__familyDetails"
+		},
+		{
+			"accessType": "EXECUTE",
+			"principalType": "ROLE",
+			"principalId": "$owner",
+			"permission": "ALLOW",
+			"property": "__update__familyDetails"
+		}
+	],
+	"methods": {}
+}

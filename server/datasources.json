@@ -1,0 +1,41 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysql": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "testing",
+    "password": "naqash99",
+    "name": "mysql",
+    "user": "root",
+    "connector": "mysql"
+  },
+  "emailsource": {
+    "name": "emailsource",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "port": 465,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "naqash.ahmad2@gmail.com",
+          "pass": "naqash99"
+        }
+      }
+    ]
+  },
+  "storage": {
+    "name": "storage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./files"
+  }
+}

@@ -1,0 +1,79 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ba-card cardTitle="Other Details" baCardClass="with-scroll">
+        <!-- hobbies section -->
+        <ba-card cardTitle="Hobbies(if any)" baCardClass="with-scroll">
+            <div formArrayName="hobbies">
+                <!-- input hobby -->
+                <div class="row">
+                    <div class=" form-group" *ngFor="let hobby of hobbies.controls; let i = index">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" formControlName="{{i}}" placeholder="Hobby {{i+1}}">
+                        </div>
+                    </div>
+                    <!-- buttons to add or delete a hobby -->
+                    <div>
+                        <div class=" form-group">
+                            <button type="button" class="btn btn-default ion-ios-plus-outline" (click)="onAddHobby()">Add</button>
+                            <button type="button" class="btn btn-default ion-trash-a" (click)="onDeleteHobby()">Delete</button>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </ba-card>
+        <ba-card cardTitle="Extra Curricular Activities(if any)" baCardClass="with-scroll">
+            <!-- row containing label for acitivity,prize and awarded by -->
+            <div class="form-group row">
+                <label for="activites" class="col-sm-3 control-label"><h3>Activity</h3></label>
+                <label for="prize" class="col-sm-3 control-label"><h3>Prize</h3></label>
+                <label for="awarded" class="col-sm-3 control-label"><h3>Awarded By</h3></label>
+            </div>
+            <!-- row that contains activity and prize info -->
+            <div class="row">
+                <!-- input Activity -->
+                <div class="col-sm-3">
+                    <div formArrayName="activities">
+                        <div class="form-group" *ngFor="let activity of activities.controls; let i = index">
+                            <input type="text" class="form-control" formControlName="{{i}}" placeholder="Activity {{i+1}}">       
+                        </div>
+                    </div>
+                </div>
+                <!-- input prize -->
+                <div class="col-sm-3">
+                    <div formArrayName="prize">
+                        <div class="form-group" *ngFor="let priz of prize.controls; let i = index">
+                            <input type="text" class="form-control" formControlName="{{i}}" placeholder="Prize {{i+1}}">       
+                        </div>
+                    </div>
+                </div>
+                <!-- input awarded by -->
+                <div class="col-sm-3">
+                    <div formArrayName="awarded">
+                        <div class="form-group" *ngFor="let awar of awarded.controls; let i = index">
+                            <input type="text" class="form-control" formControlName="{{i}}" placeholder="Award {{i+1}}">       
+                        </div>
+                    </div>
+                </div>
+                <!-- buttons to add or delete an activity -->
+                <div class="col-sm-3">
+                    <div class=" form-group">
+                        <button type="button" class="btn btn-default ion-trash-a pull-right" (click)="onDeleteActivity()">Delete</button>
+                        <button type="button" class="btn btn-default ion-ios-plus-outline pull-right" (click)="onAddActivity()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </ba-card>
+
+        <!-- submit buttons for saving and moving next or skipping the step -->
+        <div *ngIf="created !== true" class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+                <button [disabled]="!form.valid" type="submit"  class="btn btn-primary pull-right">Save and Move Next</button>
+                <button (click)="onSkipClick()" type="button" class="btn btn-default pull-right">Skip this step</button>
+            </div>
+        </div>
+        <div *ngIf="created === true" class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <button [disabled]="!form.valid" type="button" class="btn btn-primary pull-right" (click)="onUpdateSubmit(form.value)">Update and Move Next</button>
+            </div>
+          </div>
+    </ba-card>
+</form>

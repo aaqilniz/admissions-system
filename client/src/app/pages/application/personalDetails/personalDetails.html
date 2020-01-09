@@ -1,0 +1,189 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <ba-card cardTitle="Personal Details" baCardClass="with-scroll">
+
+        <!-- DropDown for degree type -->
+        <div class="form-group row control-label"  [ngClass]="{'has-error': (!degreeType.valid && degreeType.touched), 'has-success': (degreeType.valid && degreeType.touched)}">
+            <label for="selectDegreeType" class="col-sm-2">
+                <!-- if degree type is invalid -->
+            <span *ngIf="!degreeType.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>
+            Applying For</label>
+
+            <div class="col-sm-6">
+                <select [formControl]="degreeType" class="form-control" id="selectDegreeType" placeholder="test" (change)="onChangeDT($event.target.value)">
+                    <option value="" selected disabled>--select degree--</option>
+                    <option *ngFor="let degree of degrees" value={{degree}}>
+                        {{degree}}
+                    </option>
+                </select>
+                <span *ngIf="!degreeType.valid && degreeType.touched" class="help-block sub-little-text">This is required</span>
+            </div>
+        </div>
+
+        <!-- DropDown for Department type -->
+        <div class="form-group row control-label"  [ngClass]="{'has-error': (!department.valid && department.touched), 'has-success': (department.valid && department.touched)}">
+            <label for="selectDepartment" class="col-sm-2">
+                <!-- if degree type is invalid -->
+            <span *ngIf="!department.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>
+            Department Name</label>
+
+            <div class="col-sm-6">
+                <select [formControl]="department" class="form-control" id="selectDepartment" placeholder="test">
+                    <option value="" selected disabled>--select dept--</option>
+                    <option *ngFor="let dept of departments" value={{dept}}>
+                        {{dept}}
+                    </option>
+                </select>
+                <span *ngIf="!department.valid && department.touched" class="help-block sub-little-text">This is required</span>
+            </div>
+        </div>
+        <!-- input for name -->
+        <div class="form-group row" [ngClass]="{'has-error': (!name.valid && name.touched), 'has-success': (name.valid && name.touched)}">
+            <label for="inputName" class="col-sm-2 control-label">
+                    <span *ngIf="!name.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>
+            Name</label>
+            <div class="col-sm-6">
+                <input [formControl]="name" type="text" class="form-control" id="inputName" placeholder="your name">
+                <span *ngIf="!name.valid && name.touched" class="help-block sub-little-text">Name is required</span>
+            </div>
+        </div>
+
+        <!-- input for Father Name -->
+        <div class="form-group row" [ngClass]="{'has-error': (!fatherName.valid && fatherName.touched), 'has-success': (fatherName.valid && fatherName.touched)}">
+            <label for="inputFatherName" class="col-sm-2 control-label">
+                <span *ngIf="!fatherName.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>   
+            Father Name</label>
+            <div class="col-sm-6">
+                <input [formControl]="fatherName" type="text" class="form-control" id="inputFatherName" placeholder="your father's name">
+                <span *ngIf="!fatherName.valid && fatherName.touched" class="help-block sub-little-text">Father name is required</span>
+            </div>
+        </div>
+
+        <!-- input for email -->
+        <div class="form-group row" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
+            <label for="inputEmail" class="col-sm-2 control-label">
+                <span *ngIf="!email.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>    
+            Email</label>
+            <div class="col-sm-6">
+                <input [formControl]="email" type="email" class="form-control" id="inputEmail" placeholder="hello@a.com">
+                <span *ngIf="!email.valid && email.touched" class="help-block sub-little-text">Enter a valid email</span>
+            </div>
+        </div>
+
+        <!-- Input for Date of Birth -->
+        <div class="form-group row" [ngClass]="{'has-error': (!dob.valid && dob.touched), 'has-success': (dob.valid && dob.touched)}">
+            <label for="inputDob" class="col-sm-2 control-label">
+                <span *ngIf="!dob.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>    
+            DOB</label>
+            <div class="col-sm-6">
+                <input [formControl]="dob" type="date" class="form-control" id="inputDob" max="2002-01-01">
+                <span *ngIf="!dob.valid && dob.touched" class="help-block sub-little-text">DOB is required</span>
+            </div>
+        </div>
+    
+        <!-- select gender -->
+        <div class="form-group row control-label" [ngClass]="{'has-error': (!gender.valid && gender.touched), 'has-success': (gender.valid && gender.touched)}">
+            <label for="selectGender" class="col-sm-2">
+                <span *ngIf="!gender.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>    
+            Gender</label>
+            <div class="col-sm-6">
+                <select [formControl]="gender" class="form-control" id="selectGender">
+                    <option value="" selected disabled>--select gender--</option>
+                    <option *ngFor="let gender of genders" value={{gender}}>
+                        {{gender}}
+                    </option>
+                </select>
+                <span *ngIf="!gender.valid && gender.touched" class="help-block sub-little-text">Gender is required</span>
+            </div>
+        </div>
+
+        <!-- Select nationality -->
+        <div class="form-group row control-label" [ngClass]="{'has-error': (!nationality.valid && nationality.touched), 'has-success': (nationality.valid && nationality.touched)}">
+            <label for="selectNationality" class="col-sm-2">
+                <span *ngIf="!nationality.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>    
+            Nationality</label>
+            <div class="col-sm-6">
+                <select (change)="onChange($event.target.value)" [formControl]="nationality" class="form-control" id="selectNationality">
+                    <option value="" selected disabled> --select nationality--</option>
+                    <option *ngFor="let nation of nations" value={{nation.country}}>
+                        {{nation.country}}
+                    </option>
+                </select>
+                <span *ngIf="!nationality.valid && nationality.touched" class="help-block sub-little-text">Nationality is required</span>
+            </div>
+        </div>
+
+        <!-- Select Domicile-->
+        <div class="form-group row control-label" [ngClass]="{'has-error': (!domicile.valid && domicile.touched  && !domicile.disabled), 'has-success': (domicile.valid && domicile.touched  && !domicile.disabled)}">
+            <label for="selectDomicile" class="col-sm-2">
+                <span *ngIf="!domicile.valid  && !domicile.disabled" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>    
+            Domicile</label>
+            <div class="col-sm-6">
+                <select [formControl]="domicile" class="form-control" id="selectDomicile" >
+                    <option value="" selected disabled>--select domicile--</option>
+                    <option *ngFor="let type of domiciles" value={{type}}>
+                        {{type}}
+                    </option>
+                </select>
+                <span *ngIf="!domicile.valid && domicile.touched  && !domicile.disabled" class="help-block sub-little-text">Domicile is required</span>
+            </div>
+        </div>
+
+        <!-- select District -->
+        <div class="form-group row control-label" [ngClass]="{'has-error': (!district.valid && district.touched && !district.disabled), 'has-success': (district.valid && district.touched && !district.disabled)}">
+            <label for="selectDistrict" class="col-sm-2">
+                <span *ngIf="!district.valid && !district.disabled" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>   
+            District</label>
+
+            <div class="col-sm-6">
+                <select [formControl]="district" class="form-control" id="selectDistrict">
+                    <option value="" selected disabled>--select district--</option>
+                    <option *ngFor = "let district of districts" value={{district.city}}>
+                        {{district.city}}
+                    </option>
+                </select>
+                <span *ngIf="!district.valid && district.touched && !district.disabled" class="help-block sub-little-text">District is required</span>
+            </div>
+        </div>
+
+        <!-- input for cnic if nationality is Pakistan -->
+        <div class="form-group row" [ngClass]="{'has-error': (!cnic.valid && cnic.touched  && !cnic.disabled), 'has-success': (cnic.valid && cnic.touched  && !cnic.disabled)}">
+            <label for="inputCnic" class="col-sm-2 control-label">
+                <span *ngIf="!cnic.valid  && !cnic.disabled" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>    
+            Cnic</label>
+            <div class="col-sm-6">
+                <input [formControl]="cnic" type="text" id="inputCnic" class="form-control" [textMask]="{mask: cnicMask}" placeholder="_____-_______-_">
+                <span *ngIf="(!cnic.valid && cnic.dirty  && !cnic.disabled)" class="help-block sub-little-text">Enter a valid format</span>
+            </div>
+        </div>
+
+        <!-- input for Passport if nationality is other than Pakistan -->
+        <div class="form-group row" [ngClass]="{'has-error': (!passport.valid && passport.touched  && !passport.disabled), 'has-success': (passport.valid && passport.touched && !passport.disabled)}">
+            <label for="inputPassport" class="col-sm-2 control-label">
+                <span *ngIf="!passport.valid && !passport.disabled" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span>    
+            Passport</label>
+            <div class="col-sm-6">
+                <input [formControl]="passport" type="text" id="inputPassport" class="form-control" placeholder="Enter Passport">
+                <span *ngIf="!passport.valid && passport.touched && !passport.disabled" class="help-block sub-little-text">Passport is required</span>
+            </div>
+        </div>
+         
+        <!-- input for mobile -->
+        <div class=" form-group row" [ngClass]="{'has-error': (!mobile.valid && mobile.touched), 'has-success': (mobile.valid && mobile.touched)}">
+            <label for="inputMobile" class="col-sm-2 control-label">
+                <span *ngIf="!mobile.valid" class="fa fa-asterisk" style="color:red; font-size: 11px;"></span> 
+            Mobile</label>
+            <div class="col-sm-6">
+                <input [formControl]="mobile" type="text" id="inputMobile" class="form-control" [textMask]="{mask: mobileMask}" placeholder="____-_______">
+                <span *ngIf="(!mobile.valid && mobile.dirty)" class="help-block sub-little-text">Enter a valid format</span>
+            </div>
+        </div>
+
+        <!-- submit button -->
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-6">
+                <button [disabled]="!form.valid" (click)="sendApplyingDegree()" type="submit"  class="btn btn-primary pull-right">Save and Move Next</button>
+            </div>
+        </div>
+</ba-card>
+</form>
+    

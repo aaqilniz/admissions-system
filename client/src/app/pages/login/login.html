@@ -1,0 +1,87 @@
+ <!-- notification content -->
+<div id="snackbar">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <strong>Help! </strong>{{verificationMessage}}
+  <button class="buttonlink" (click)="resendEmail()">Resend_Email</button>
+</div>
+ <!-- Modal content -->
+ <div id="myModal" class="modal">
+  
+    <div class="modal-content">
+        <h3>Resend Email <span class="close"  onclick="this.parentElement.parentElement.parentElement.style.display='none';">&times;</span></h3>  
+        <div class="content form-group row" >
+            <label for="remail" class="control-label label col-sm-2">Email</label>
+            <input #remail class="form-control offset-sm-1 col-sm-8 textbox" type="text" placeholder="Email">
+        </div>
+        <div class="actions">
+          <button class="toggle-button" (click)="modalResendEmail(remail)">SEND</button>
+        </div>
+    </div>
+  
+</div>
+ <!-- ForgotPass Modal content -->
+ <div id="forgotPass" class="modal">
+  
+    <div class="modal-content">
+        <h3>Reset Password <span class="close"  onclick="this.parentElement.parentElement.parentElement.style.display='none';">&times;</span><p>Please enter your email to reset password</p></h3>
+        <div class="content form-group row" >
+            <label for="forgotpasswordemail" class="control-label label col-sm-2">Email</label>
+            <input #forgotpasswordemail class="form-control offset-sm-1 col-sm-8 textbox" type="text" placeholder="Email">
+        </div>
+        <div class="actions">
+          <button class="toggle-button" (click)="modalforgotPassword(forgotpasswordemail)">SEND</button>
+        </div>
+    </div>
+  
+</div>
+<!--Login Page content  -->
+<div class="auth-main">
+  <div class="auth-block">
+    <h1 translate>{{'login.title'}}</h1>
+    <a routerLink="/register" class="auth-link" translate>{{'login.signup_link'}}</a>
+    <!-- toaster content -->
+    <toaster-container [toasterconfig]="config"></toaster-container>    
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
+      <div class="form-group row" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
+        <label for="inputEmail3" class="col-sm-2 control-label" translate>{{'login.email'}}</label>
+
+        <div class="col-sm-10">
+          <input [formControl]="email" type="email" class="form-control" id="inputEmail3" placeholder="{{'login.email' | translate}}">
+          <a *ngIf="" routerLink="/login" class="forgot-pass" translate>Resend_Email</a>
+          <span *ngIf="email.hasError('required') && email.touched " class="help-block sub-little-text">You can't leave this empty.</span>
+          <span *ngIf="verified === false" class="help-block sub-little-text">Email not verified.</span>
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
+        <label for="inputPassword3" class="col-sm-2 control-label" translate>{{'login.password'}}</label>
+
+        <div class="col-sm-10">
+          <input [formControl]="password" type="password" class="form-control" id="inputPassword3" placeholder="{{'login.password' | translate}}">
+          <span *ngIf="password.hasError('required') && password.touched " class="help-block sub-little-text">You can't leave this empty.</span>          
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-3">
+          <button [disabled]="!form.valid" type="submit" class="btn btn-default btn-auth" translate>{{'login.sign_in'}}</button>
+        </div>
+        <div class="row col-sm-6">
+            <div class="row offset-sm-9 col-sm-12 forgot-pass">
+                <a routerLink="/login" (click)=forgotPassword() translate>{{'login.forgot_password'}}</a>
+            </div>
+            <div class="row offset-sm-10 col-sm-12 forgot-pass">
+                <a routerLink="/login" class="need-help" (click)=needHelp() translate>Need Help!</a>
+            </div>
+        </div>
+      </div>
+    </form>
+    <!-- <div class="auth-sep"><span><span translate>{{'login.sign_from_app_text'}}</span></span></div>
+
+    <div class="al-share-auth">
+      <ul class="al-share clearfix">
+        <li><i class="socicon socicon-facebook" title="{{'login.share_on_facebook' | translate}}"></i></li>
+        <li><i class="socicon socicon-twitter" title="{{'login.share_on_twitter' | translate}}"></i></li>
+        <li><i class="socicon socicon-google" title="{{'login.share_on_google_plus' | translate}}"></i></li>
+      </ul>
+    </div> -->
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <ba-card cardTitle="Language Details" baCardClass="with-scroll">
+        <!-- Headings containing label for language,written and spoken -->
+        <div class="form-group row">
+            <label for="language" class="col-sm-3 control-label"><h3>Language</h3></label>
+            <label for="written" class="col-sm-3 control-label"><h3>Written</h3></label>
+            <label for="spoken" class="col-sm-3 control-label"><h3>Spoken</h3></label>
+        </div>
+
+        <div class="row">
+            <!-- input language -->
+            <div class="col-sm-3">
+                <div formArrayName="languages">
+                    <div class="form-group" *ngFor="let language of languages.controls; let i = index">
+                        <input type="text" style="height: 35px;" class="form-control" formControlName="{{i}}" placeholder="language {{i+1}}">       
+                    </div>
+                </div>
+            </div>
+            <!-- select written skill -->
+            <div class="col-sm-3">
+                <div formArrayName="writtens">
+                    <div class="form-group" *ngFor="let written of writtens.controls; let i = index">
+                        <select class="form-control" style="height: 35px;" formControlName="{{i}}">
+                            <option value="">Written Skill</option>
+                            <option value="Good">Good</option>
+                            <option value="Very Good">Very Good</option>
+                        </select>      
+                    </div>
+                </div>
+            </div>
+            <!-- select spoken skill -->
+            <div class="col-sm-3">
+                <div formArrayName="spokens">
+                    <div class="form-group" *ngFor="let spoken of spokens.controls; let i = index">
+                        <select class="form-control" style="height: 35px;" formControlName="{{i}}">
+                            <option value="" selected disabled>Spoken Skill</option>
+                            <option value="Good">Good</option>
+                            <option value="Very Good">Very Good</option>
+                        </select>       
+                    </div>
+                </div>
+            </div>
+            <!-- buttons to add or delete an array -->
+            <div class="col-sm-3">
+                <div class=" form-group">
+                    <button type="button" class="btn btn-default ion-trash-a pull-right" (click)="onDeleteLanguage()">Delete</button>
+                    <button type="button" class="btn btn-default ion-ios-plus-outline pull-right" (click)="onAddLanguage()">Add</button>
+                </div>
+            </div>
+        </div>
+        <!-- submit buttons for saving and moving next or skipping the step -->
+        <div class="form-group row">
+            <div *ngIf="created !== true" class="offset-sm-2 col-sm-10">
+                <button [disabled]="!form.valid" type="submit"  class="btn btn-primary pull-right">Save and Move Next</button>
+                <button (click)="onSkipClick()"  type="button" class="btn btn-default pull-right">Skip this step</button>
+            </div>
+        </div>
+        <div *ngIf="created === true" class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <button [disabled]="!form.valid" type="button" class="btn btn-primary pull-right" (click)="onUpdateSubmit(form.value)">Update and Move Next</button>
+            </div>
+          </div>
+    </ba-card>
+</form>
