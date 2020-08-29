@@ -7,6 +7,7 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "create:schema": "node ./server/create-table.js",
     "start": "node .",
     "start:dev": "nodemon --exec npm start",
     "posttest": "npm run lint && nsp check",

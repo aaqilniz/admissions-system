@@ -4,13 +4,13 @@
     "connector": "memory"
   },
   "mysql": {
-    "host": "localhost",
+    "host": "db4free.net",
     "port": 3306,
     "url": "",
-    "database": "testing",
-    "password": "asdf",
+    "database": "admission",
+    "password": "asd1vsdf3@fa_",
     "name": "mysql",
-    "user": "root",
+    "user": "aailniz",
     "connector": "mysql"
   },
   "emailsource": {
@@ -26,8 +26,8 @@
           "rejectUnauthorized": false
         },
         "auth": {
-          "user": "naqash.ahmad2@gmail.com",
-          "pass": "naqash99"
+          "user": "aaqildev@gmail.com",
+          "pass": "asdf@1234"
         }
       }
     ]
