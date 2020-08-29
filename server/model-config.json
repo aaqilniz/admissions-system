@@ -14,51 +14,51 @@
     ]
   },
   "Student": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": true
   },
   "studentAddress": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "educationalDetails": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "extraCurricularActivities": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "familyDetails": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "bankDetails": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "studentAptitudeTests": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "hobbies": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "language": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "fundDetails": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": true
   },
   "researchInterests": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false,
     "relations": {
       "user": {
@@ -69,26 +69,26 @@
     }
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "Email": {
     "dataSource": "emailsource"
   },
   "department": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "degree": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": false
   },
   "images": {
