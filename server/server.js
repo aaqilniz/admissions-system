@@ -5,10 +5,8 @@ var boot = require('loopback-boot');
 var path = require('path');
 var app = module.exports = loopback();
 var updateJson = require('update-json-file');
-var path = require('path');
 
-
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 var filePath = path.resolve(__dirname, '../common/models/student.json');
@@ -17,7 +15,6 @@ updateJson(filePath, (data) => {
   data.verifyOptions.template = path.resolve(__dirname, './views/verify.ejs');
   return data;
 });
-
 
 app.start = function() {
   // start the web server
