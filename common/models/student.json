@@ -10,7 +10,7 @@
 		"type": "email",
 		"from": "noreply@example.com",
 		"subject": "Verification Email Options",
-		"template": "E:\\NodeAngular-ProjectsPractice\\FYP\\my theme\\Fyp-project\\rough theme-lb3\\admission\\server\\views\\verify.ejs",
+		"template": "/media/aaqilniz/data/working-space/personal/admissions-system/server/views/verify.ejs",
 		"redirect": "http://localhost:4200"
 	},
 	"excludeBaseProperties": [

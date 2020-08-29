@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
+    "start:dev": "nodemon --exec npm start",
     "posttest": "npm run lint && nsp check",
     "build:sdk": "./node_modules/.bin/lb-sdk server/server.js ./client/src/app/shared/sdk"
   },

@@ -1,3 +1,3 @@
 # Initial #
 
-An Angular project for student admission.
+LoopBack based Back-end server for online admission system.

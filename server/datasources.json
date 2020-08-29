@@ -8,7 +8,7 @@
     "port": 3306,
     "url": "",
     "database": "testing",
-    "password": "naqash99",
+    "password": "asdf",
     "name": "mysql",
     "user": "root",
     "connector": "mysql"
